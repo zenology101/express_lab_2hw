@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port =  3000;
+
 
 app.get('/greeting/:name', (req, res) => {
     console.log(req.params);
@@ -8,10 +9,12 @@ app.get('/greeting/:name', (req, res) => {
 })
 
 app.get('/tip/:total/:tipPercentage', (req, res) => {
-    console.log(req.params);
-	let tip = req.params.total * req.params.tipPercentage;
-    
+    let total = Number(req.params.total);
+    let tipPercentage = Number(req.params.tipPercentage);
+    res.send("tip:" + total * tipPercentage/100);
 })
+
+
 
 app.listen(port,() => {
     console.log('listening on port' , port);
